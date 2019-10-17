@@ -35,11 +35,12 @@ elements as a slice.
 !*/
 
 #![cfg_attr(not(feature = "std"), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
 
 #[cfg(feature = "alloc")]
 extern crate alloc;
 
-#[cfg(feature = "std")]
+#[cfg(all(feature = "std", target = "sgx"))]
 extern crate core;
 
 #[cfg(feature = "serde")]

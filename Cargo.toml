@@ -27,6 +27,7 @@ keywords = [
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/myrrlyn/bitvec"
+exclude = [ "/sgx/*", ]
 
 [features]
 alloc = []
@@ -34,29 +35,39 @@ atomic = []
 default = [
 	"atomic",
 	"std",
+    "mesalock_sgx",
 ]
 std = [
 	"alloc",
+    "mesalock_sgx",
 ]
 testing = [
 	"atomic",
 	"serde",
 	"std",
 ]
+mesalock_sgx = [
+    "std",
+    "sgx_tstd",
+]
 
 [dependencies.serde]
-default-features = false
+#default-features = false
+git = "https://github.com/mesalock-linux/serde-sgx"
 features = [
 	"derive",
 ]
 optional = true
 version = "1"
 
+[dependencies]
+sgx_tstd = { rev = "v1.0.9", git = "https://github.com/baidu/rust-sgx-sdk.git", optional = true }
+
 # Crates required when running the test suite.
 [dev-dependencies]
-serde = "1"
-serde_json = "1"
-serde_test = "1"
+#serde = "1"
+#serde_json = "1"
+#serde_test = "1"
 
 # Indicates the features that docs.rs should enable when building documentation.
 [package.metadata.docs.rs]
