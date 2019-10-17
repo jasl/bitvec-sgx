@@ -33,6 +33,12 @@ use core::{
 	mem,
 };
 
+#[cfg(feature = "alloc")]
+use alloc::{
+	boxed::Box,
+};
+
+
 use serde::{
 	Serialize,
 	ser::{
