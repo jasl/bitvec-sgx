@@ -9,6 +9,8 @@ able to implement `Deserialize` as well.
 
 #![cfg(all(feature = "serde"))]
 
+use std::prelude::v1::*;
+
 use crate::{
 	cursor::Cursor,
 	slice::BitSlice,
